@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8739d581819011fea34feca8cc077062d6bdfee39c7b37a8ed48c5e0a8b14837"
+            "sha256": "59cf2b6e00544a9062a0c1f03d91459f2a4c422814cd4439d841e6251784d25e"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -30,11 +30,20 @@
             ],
             "version": "==3.0.4"
         },
+        "chatpywork": {
+            "hashes": [
+                "sha256:dff08512698be438ceff0deb2f0195f55abc86870d55e7c152505cf0c4bf8c3f",
+                "sha256:eca0535ca01cbcd9958007ea893268da475dc854d084c37951112890d286b843"
+            ],
+            "index": "pypi",
+            "version": "==1.3.0"
+        },
         "idna": {
             "hashes": [
                 "sha256:b307872f855b18632ce0c21c5e45be78c0ea7ae4c15c828c20788b26921eb3f6",
                 "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"
             ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==2.10"
         },
         "requests": {
@@ -50,6 +59,7 @@
                 "sha256:91056c15fa70756691db97756772bb1eb9678fa585d9184f24534b100dc60f4a",
                 "sha256:e7983572181f5e1522d9c98453462384ee92a0be7fac5f1413a1e35c56cc0461"
             ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4'",
             "version": "==1.25.10"
         }
     },
