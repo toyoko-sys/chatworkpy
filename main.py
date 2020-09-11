@@ -12,8 +12,8 @@ from utils.chatwork import rooms
 
 def main():
     api_token = ''
-    chatwork_rooms = rooms.Rooms(api_token)
     room_id = '52230684'
+    chatwork_rooms = rooms.Rooms(api_token, room_id)
     #room = chatpywork.Room(room_id, api_token)
     try:
 
@@ -21,10 +21,12 @@ def main():
         #account_id2 = '2761593'  ## th
         to_id_list = []
         to_id_list.append(account_id1)
-        chatwork_rooms.send_message("", to_id_list)
-        raise ValueError("exception: value error!")
+        chatwork_rooms.send_message("hello", to_id_list)
+        #raise ValueError("exception: value error!")
     except ValueError as e:
         print(e)
         #room.send_message(e, to={account_id1: ""})
+    except Exception as ex:
+        print(ex)
 
 main()
