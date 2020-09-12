@@ -45,7 +45,10 @@ class Rooms(chatwork.Chatwork):
     #     return tos_dict
         
     def send_message(self, message: str, to_id_list: list, to_all: bool=False):
-        get_name = self._get_rooms()
+        response_get_rooms = self._get_rooms()
+        if response_get_rooms.status_code == 200:
+            content = response_get_rooms.content
+
         chatwork_contacts = contacts.Contacts(self.api_token, to_id_list)
         tos_dict = chatwork_contacts.make_tos_dict()
         

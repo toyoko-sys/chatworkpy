@@ -2,6 +2,7 @@
 
 import requests
 import datetime
+from utils.config import Config
 
 # https://pypi.org/project/chatpywork/
 # pip install chatpywork
@@ -11,7 +12,9 @@ from utils.chatwork import chatwork
 from utils.chatwork import rooms
 
 def main():
-    api_token = ''
+    config_file = './config.yml'
+    config = Config(config_file).content
+    api_token = config["CHATWORK_API_TOKEN"]
     room_id = '52230684'
     chatwork_rooms = rooms.Rooms(api_token, room_id)
     #room = chatpywork.Room(room_id, api_token)
