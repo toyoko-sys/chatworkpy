@@ -60,30 +60,14 @@ class Rooms(chatwork.Chatwork):
         request_params = {'body': prefix_message + message}        
         return self.exec_request("post", f"rooms/{self.room_id}/messages", request_params=request_params)
 
-    def send_task(self, task: str, to_id_list:list, limit:datetime.datetime=None):
-        """新しいタスクを作成する
-
-        Parameters
-        ----------
-        task :str
-            作成するタスク
-        to_ids :array
-            担当者のID
-        limit : datetime
-            期限。オプショナル
-
-        Returns
-        ----------
-        requests.Response
-            requests.postの戻り値
-        """
+    def send_task(self, task_body: str, to_id_list:list, limit:datetime.datetime=None):
         if limit:
             utctimetuple = limit.utctimetuple()
             limit_datetime = calendar.timegm(utctimetuple)
             to_id_list_str = [str(n) for n in to_id_list]
             to_ids = ",".join(to_id_list_str)
-            request_params = {'body': task, "to_ids": to_ids, "limit": limit_datetime}
+            request_params = {'body': task_body, "to_ids": to_ids, "limit": limit_datetime}
         else:
-            request_params = {'body': task, "to_ids": ",".join(to_id_list)}
+            request_params = {'body': task_body, "to_ids": ",".join(to_id_list)}
             
         return self.exec_request("post", f"rooms/{self.room_id}/tasks", request_params=request_params)
