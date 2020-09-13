@@ -7,5 +7,4 @@ verify_ssl = true
 
 [packages]
 requests = "*"
-chatpywork = "*"
 
