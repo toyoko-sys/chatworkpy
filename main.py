@@ -24,7 +24,11 @@ def main():
         #account_id2 = '2761593'  ## th
         to_id_list = []
         to_id_list.append(account_id1)
-        chatwork_rooms.send_message("hello", to_id_list)
+        #chatwork_rooms.send_message("hello", to_id_list)
+        dt_now = datetime.datetime.now()
+        td_3d = datetime.timedelta(days=3)
+        limit_datetime = dt_now + td_3d
+        chatwork_rooms.send_task("hello", to_id_list, limit_datetime)
         #raise ValueError("exception: value error!")
     except ValueError as e:
         print(e)

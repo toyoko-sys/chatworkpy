@@ -2,6 +2,8 @@ from utils.chatwork import chatwork
 from utils.chatwork import contacts
 import os
 import requests
+import calendar
+import datetime
 
 class Rooms(chatwork.Chatwork):
     
@@ -18,11 +20,10 @@ class Rooms(chatwork.Chatwork):
     def _make_prefix_message_for_to_id_list(self, tos_dict: dict, to_all: bool=False):
         prefix = ''
         if to_all:
-            prefix += "[toall]"
+            prefix += f"[toall]{os.linesep}"
         else:
-            for to_id, to_name in tos_dict.items():
-                prefix += f"[To:{to_id}] {to_name}さん{os.linesep}"
-        prefix += os.linesep
+            for to in tos_dict:
+                prefix += f"[To:{to['account_id']}] {to['name']} さん{os.linesep}"
 
         return prefix
     
@@ -47,25 +48,42 @@ class Rooms(chatwork.Chatwork):
                 for member in response_get_rooms_members:
                     for to_id in to_id_list:
                         if to_id == member['account_id']:
-                            item = {"account_id" : to_id, "name" : member["name"] + " さん"}
+                            item = {"account_id" : to_id, "name" : member["name"]}
                             if tos_dict.count(item) == 0:
                                 tos_dict.append(item)
         return tos_dict
         
     def send_message(self, message: str, to_id_list: list, to_all: bool=False):
-        aaa = self._make_tos_dict(to_id_list)
-        # if response_get_rooms.status_code == 200:
-        #     content = response_get_rooms.content
-        #     print(content)
-        #     aa = content[0]['room_id']
+        tos_dict = self._make_tos_dict(to_id_list)
 
-        chatwork_contacts = contacts.Contacts(self.api_token, to_id_list)
-        tos_dict = chatwork_contacts.make_tos_dict()
-        
-        post_url = f'{self.base_url}/rooms/{self.room_id}/messages'
-
-        headers = {'X-ChatWorkToken': self.api_token}
         prefix_message = self._make_prefix_message_for_to_id_list(tos_dict, to_all)
-        params = {'body': prefix_message + message}
-        return requests.post(post_url, headers=headers, data=params)
+        request_params = {'body': prefix_message + message}        
+        return self.exec_request("post", f"rooms/{self.room_id}/messages", request_params=request_params)
 
+    def send_task(self, task: str, to_id_list:list, limit:datetime.datetime=None):
+        """新しいタスクを作成する
+
+        Parameters
+        ----------
+        task :str
+            作成するタスク
+        to_ids :array
+            担当者のID
+        limit : datetime
+            期限。オプショナル
+
+        Returns
+        ----------
+        requests.Response
+            requests.postの戻り値
+        """
+        if limit:
+            utctimetuple = limit.utctimetuple()
+            limit_datetime = calendar.timegm(utctimetuple)
+            to_id_list_str = [str(n) for n in to_id_list]
+            to_ids = ",".join(to_id_list_str)
+            request_params = {'body': task, "to_ids": to_ids, "limit": limit_datetime}
+        else:
+            request_params = {'body': task, "to_ids": ",".join(to_id_list)}
+            
+        return self.exec_request("post", f"rooms/{self.room_id}/tasks", request_params=request_params)
