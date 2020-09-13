@@ -20,7 +20,7 @@ def main():
     #room = chatpywork.Room(room_id, api_token)
     try:
 
-        account_id1 = '970114'  ## HT
+        account_id1 = 970114  ## HT
         #account_id2 = '2761593'  ## th
         to_id_list = []
         to_id_list.append(account_id1)
