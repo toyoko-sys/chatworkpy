@@ -1,7 +1,7 @@
-from chatworkpy.chatworkpy.chatwork import chatwork
+from chatworkpy.chatwork.chatwork import Chatwork
 import requests
 
-class Contacts(chatwork.Chatwork):
+class Contacts(Chatwork):
     def __init__(self, api_token, to_id_list: list):
         self.to_id_list = to_id_list
         super().__init__(api_token)

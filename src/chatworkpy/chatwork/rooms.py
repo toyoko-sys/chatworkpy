@@ -1,11 +1,11 @@
-from chatworkpy.chatworkpy.chatwork import chatwork
-from chatworkpy.chatworkpy.chatwork import contacts
+from chatworkpy.chatwork.chatwork import Chatwork
+from chatworkpy.chatwork.contacts import Contacts
 import os
 import requests
 import calendar
 import datetime
 
-class Rooms(chatwork.Chatwork):
+class Rooms(Chatwork):
     
     def __init__(self, api_token: str, room_id):
         self.room_id = room_id
