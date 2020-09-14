@@ -1,4 +1,4 @@
-from pychatwork.pychatwork.chatwork import chatwork
+from chatworkpy.chatworkpy.chatwork import chatwork
 import requests
 
 class Contacts(chatwork.Chatwork):

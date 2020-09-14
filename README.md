@@ -8,10 +8,10 @@ chatwork module for python
 
 ## Install package
 
-https://pypi.org/project/pychatwork/
+https://pypi.org/project/chatworkpy/
 
 ```
-pip install pychatwork
+pip install chatworkpy
 ```
 
 ## Usage

@@ -1,5 +1,5 @@
-from pychatwork.pychatwork.chatwork import chatwork
-from pychatwork.pychatwork.chatwork import contacts
+from chatworkpy.chatworkpy.chatwork import chatwork
+from chatworkpy.chatworkpy.chatwork import contacts
 import os
 import requests
 import calendar

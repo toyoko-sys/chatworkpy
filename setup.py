@@ -20,18 +20,18 @@ requires = [
     ]
 
 setup(
-    name='pychatwork',
+    name='chatworkpy',
     version='0.0.0',
     description=description,
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/tys-hiroshi/pychatwork',
+    url='https://github.com/tys-hiroshi/chatworkpy',
     author='tys-hiroshi',
     author_email='tashiro.hiroshi@toyoko-sys.co.jp',
     license='MIT',
     keywords='chatwork module for python',
-    packages=find_packages('pychatwork'),  # Required
-    package_dir = {'': 'pychatwork'},
+    packages=find_packages('chatworkpy'),  # Required
+    package_dir = {'': 'chatworkpy'},
     install_requires=requires,
     classifiers=[
         'Programming Language :: Python :: 3.8',

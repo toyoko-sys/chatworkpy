@@ -2,14 +2,14 @@
 
 import requests
 import datetime
-from pychatwork.utils.config import Config
+from chatworkpy.utils.config import Config
 
 # https://pypi.org/project/chatpywork/
 # pip install chatpywork
 
 # https://developer.chatwork.com/ja/endpoints.html
-from pychatwork.utils.chatwork import chatwork
-from pychatwork.utils.chatwork import rooms
+from chatworkpy.utils.chatwork import chatwork
+from chatworkpy.utils.chatwork import rooms
 
 def main():
     config_file = './config.yml'
