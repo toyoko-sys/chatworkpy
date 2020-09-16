@@ -12,7 +12,7 @@ from src.chatworkpy.chatwork import chatwork, rooms
 
 def main():
     config_file = './config.yml'
-    config = Config(config_file).content
+    config = Config(config_file).content["ALERT"]
     api_token = config["CHATWORK_API_TOKEN"]
     room_id = '52230684'
     chatwork_rooms = rooms.Rooms(api_token, room_id)
@@ -21,13 +21,19 @@ def main():
 
         account_id1 = 970114  ## HT
         #account_id2 = '2761593'  ## th
-        to_id_list = []
-        to_id_list.append(account_id1)
-        #chatwork_rooms.send_message("hello", to_id_list)
+        account_id_list = []
+        account_id_list.append(account_id1)
+        accounts_dict = {}
+        
+        #NOTE: やめたほうがいい
+        accounts_dict = chatwork_rooms._make_accounts_dict(account_id_list)
+        #NOTE: 手動で作るパターン
+        accounts_dict = accounts_dict.append({"account_id" : account_id, "name" : "infbot"})
+        chatwork_rooms.send_message("hello", accounts_dict)
         dt_now = datetime.datetime.now()
         td_3d = datetime.timedelta(days=3)
         limit_datetime = dt_now + td_3d
-        chatwork_rooms.send_task("hello", to_id_list, limit_datetime)
+        chatwork_rooms.send_task("hello", account_id_list, limit_datetime)
         #raise ValueError("exception: value error!")
     except ValueError as e:
         print(e)
