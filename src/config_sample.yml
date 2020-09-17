@@ -1,0 +1,7 @@
+ALERT:
+  IS_ENABLE: true
+  CHATWORK_API_TOKEN : 
+  CHATWORK_ROOM_ID : 
+  CHATWORK_TO_ACCOUNT_LIST: 
+    - ID: ""
+      NAME: ""
