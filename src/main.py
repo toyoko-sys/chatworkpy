@@ -10,6 +10,7 @@ import logging
 # https://developer.chatwork.com/ja/endpoints.html
 from chatworkpy.config import Config
 from chatworkpy.chatwork.rooms import Rooms
+from chatworkpy.chatwork.contacts import Contacts
 
 def main():
     config_file_path = './src/config.yml'
@@ -39,13 +40,26 @@ def main():
             return
 
         api_token = chatwork_config["CHATWORK_API_TOKEN"]
+
+
+        #NOTE: test contacts
+        to_account_list = chatwork_config["CHATWORK_TO_ACCOUNT_LIST"]
+        account_id_list = []
+        for account in to_account_list:
+            account_id_list.append(account["ID"])
+        chatwork_contacts = Contacts(api_token, account_id_list)
+        res = chatwork_contacts._get_contacts()
+        print(res)
+        accounts_list = chatwork_contacts.make_accounts_list()
+
+
         room_id = chatwork_config["CHATWORK_ROOM_ID"]
         to_account_list = chatwork_config["CHATWORK_TO_ACCOUNT_LIST"]
         accounts_dict = []
         for account in to_account_list:
             accounts_dict.append({"account_id" : account["ID"], "name" : account["NAME"]})
         chatwork_rooms = Rooms(api_token, room_id)
-        chatwork_rooms.send_message(error_message, accounts_dict)
+        #chatwork_rooms.send_message(error_message, accounts_dict)
     except ValueError as e:
         print(e)
         #room.send_message(e, to={account_id1: ""})
